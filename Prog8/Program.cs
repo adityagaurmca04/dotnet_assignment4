@@ -2,12 +2,8 @@ using System;
 
 namespace Prog8
 {
-    // Question 8: What is the built-in Action delegate? Create a program demonstrating
-    // both unicast and multicast Action delegates without using lambda expressions.
-
     class Program
     {
-        // Named methods matching Action<string> signature (accepts string, returns void)
         public static void PrintMessage(string message)
         {
             Console.WriteLine($"  [PrintMessage] Standard Output: {message}");
@@ -39,14 +35,12 @@ namespace Prog8
 
             Console.WriteLine("--- DEMONSTRATION (Without Lambda Expressions) ---");
             
-            // 1. Unicast Action Delegate
             Console.WriteLine("[1] Unicast Action<string> Delegate:");
             Action<string> unicastAction = PrintMessage;
             unicastAction("Hello from Unicast Action!");
 
             Console.WriteLine();
 
-            // 2. Multicast Action Delegate
             Console.WriteLine("[2] Multicast Action<string> Delegate (Combining 3 Named Methods):");
             Action<string> multicastAction = PrintMessage;
             multicastAction += PrintUppercase;

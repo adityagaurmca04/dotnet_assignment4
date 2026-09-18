@@ -2,14 +2,10 @@ using System;
 
 namespace Prog5
 {
-    // Question 5: Notification system sending notifications via Email, SMS, and WhatsApp using a multicast delegate.
-
-    // Multicast delegate definition
     public delegate void NotificationDelegate(string message);
 
     class Program
     {
-        // Notification service methods
         public static void SendEmail(string message)
         {
             Console.WriteLine($"  [EMAIL SERVICE]    Sending Email    : \"{message}\"");
@@ -32,7 +28,6 @@ namespace Prog5
             Console.WriteLine("==========================================================================");
             Console.WriteLine();
 
-            // 1. Combine Email, SMS, and WhatsApp into multicast delegate
             Console.WriteLine("--- Broadcasting Notification to All Channels (Email, SMS, WhatsApp) ---");
             NotificationDelegate? notifySystem = SendEmail;
             notifySystem += SendSMS;
@@ -43,7 +38,6 @@ namespace Prog5
 
             Console.WriteLine();
             Console.WriteLine("--- Unsubscribing SMS Channel and Broadcasting New Alert ---");
-            // 2. Remove SMS from invocation list
             notifySystem -= SendSMS;
 
             string systemUpdateMsg = "Scheduled system update will occur tonight at 02:00 AM UTC.";

@@ -2,15 +2,10 @@ using System;
 
 namespace Prog4
 {
-    // Question 4: Create a delegate for a calculator application.
-    // Use the same delegate to invoke methods for addition, subtraction, multiplication, and division.
-
-    // Define delegate for calculator operations accepting two doubles and returning double
     public delegate double CalculatorDelegate(double x, double y);
 
     class Program
     {
-        // Calculator operation methods
         public static double Add(double x, double y) => x + y;
         public static double Subtract(double x, double y) => x - y;
         public static double Multiply(double x, double y) => x * y;
@@ -24,7 +19,6 @@ namespace Prog4
             return x / y;
         }
 
-        // Helper method to execute calculation using the delegate instance
         public static void PerformCalculation(string operationName, CalculatorDelegate calcDel, double a, double b)
         {
             double result = calcDel(a, b);
@@ -44,22 +38,17 @@ namespace Prog4
             Console.WriteLine($"Operating on numbers: {num1} and {num2}");
             Console.WriteLine("--------------------------------------------------");
 
-            // Single delegate variable reused for all 4 operations
             CalculatorDelegate calcDelegate;
 
-            // 1. Addition
             calcDelegate = Add;
             PerformCalculation("Addition", calcDelegate, num1, num2);
 
-            // 2. Subtraction
             calcDelegate = Subtract;
             PerformCalculation("Subtraction", calcDelegate, num1, num2);
 
-            // 3. Multiplication
             calcDelegate = Multiply;
             PerformCalculation("Multiplication", calcDelegate, num1, num2);
 
-            // 4. Division
             calcDelegate = Divide;
             PerformCalculation("Division", calcDelegate, num1, num2);
 

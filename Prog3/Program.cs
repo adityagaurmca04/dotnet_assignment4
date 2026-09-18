@@ -2,9 +2,6 @@ using System;
 
 namespace Prog3
 {
-    // Question 3: Explain the difference between unicast and multicast delegates.
-    // Write a program demonstrating both.
-
     public delegate void DisplayDelegate(string message);
 
     class Program
@@ -44,21 +41,21 @@ namespace Prog3
 
             Console.WriteLine("--- DEMONSTRATION ---");
             Console.WriteLine("[1] Unicast Delegate Demonstration:");
-            DisplayDelegate unicastDel = MethodA; // Points only to MethodA
+            DisplayDelegate unicastDel = MethodA;
             unicastDel("Unicast test payload");
 
             Console.WriteLine();
             Console.WriteLine("[2] Multicast Delegate Demonstration (Adding MethodA, MethodB, MethodC):");
             DisplayDelegate? multicastDel = MethodA;
-            multicastDel += MethodB; // Combining MethodB
-            multicastDel += MethodC; // Combining MethodC
+            multicastDel += MethodB;
+            multicastDel += MethodC;
 
             Console.WriteLine("Invoking multicast delegate:");
             multicastDel("Multicast test payload");
 
             Console.WriteLine();
             Console.WriteLine("[3] Multicast Delegate Demonstration (Removing MethodB):");
-            multicastDel -= MethodB; // Removing MethodB from invocation list
+            multicastDel -= MethodB;
 
             Console.WriteLine("Invoking multicast delegate after removing MethodB:");
             multicastDel?.Invoke("Post-removal payload");

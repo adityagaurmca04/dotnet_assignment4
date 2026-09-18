@@ -2,13 +2,8 @@ using System;
 
 namespace Prog10
 {
-    // Question 10: What is the built-in Predicate delegate? Create a program that uses Predicate<int>
-    // with different methods to check whether a number is even, positive, or greater than 100.
-    // Demonstrate multicast invocation using GetInvocationList() and display the result returned by each method.
-
     class Program
     {
-        // Target methods matching Predicate<int> signature (accepts int, returns bool)
         public static bool IsEven(int number)
         {
             return number % 2 == 0;
@@ -24,7 +19,6 @@ namespace Prog10
             return number > 100;
         }
 
-        // Helper method to evaluate a test number across multicast Predicate using GetInvocationList()
         public static void EvaluateNumber(int testValue, Predicate<int> predicateChain)
         {
             Console.WriteLine($"\n--- Evaluating Number: {testValue} ---");
@@ -65,12 +59,10 @@ namespace Prog10
             Console.WriteLine("  - It is equivalent to Func<T, bool> and is commonly used for filtering or criteria verification.");
             Console.WriteLine();
 
-            // Create multicast Predicate<int> combining all three checking methods
             Predicate<int> numberChecks = IsEven;
             numberChecks += IsPositive;
             numberChecks += IsGreaterThan100;
 
-            // Evaluate test numbers
             EvaluateNumber(150, numberChecks);
             EvaluateNumber(-42, numberChecks);
             EvaluateNumber(77, numberChecks);

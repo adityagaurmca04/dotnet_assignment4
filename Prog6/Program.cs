@@ -2,32 +2,25 @@ using System;
 
 namespace Prog6
 {
-    // Question 6: Employee Salary Calculation using separate methods and GetInvocationList() on a multicast delegate.
-
-    // Multicast delegate accepting basic salary and returning salary component amount
     public delegate double SalaryComponentDelegate(double basicSalary);
 
     class Program
     {
-        // 1. Basic Salary component
         public static double GetBasicSalary(double basicSalary)
         {
             return basicSalary;
         }
 
-        // 2. HRA (20% of Basic Salary)
         public static double CalculateHRA(double basicSalary)
         {
             return basicSalary * 0.20;
         }
 
-        // 3. DA (10% of Basic Salary)
         public static double CalculateDA(double basicSalary)
         {
             return basicSalary * 0.10;
         }
 
-        // 4. Bonus (15% of Basic Salary)
         public static double CalculateBonus(double basicSalary)
         {
             return basicSalary * 0.15;
@@ -42,7 +35,6 @@ namespace Prog6
 
             double employeeBasicSalary = 50000.00;
 
-            // Combine methods into multicast delegate
             SalaryComponentDelegate salaryCalculator = GetBasicSalary;
             salaryCalculator += CalculateHRA;
             salaryCalculator += CalculateDA;
@@ -55,12 +47,10 @@ namespace Prog6
 
             double totalSalary = 0.0;
 
-            // Get invocation list to execute each method separately and retrieve every return value
             Delegate[] invocationList = salaryCalculator.GetInvocationList();
 
             foreach (Delegate singleDelegate in invocationList)
             {
-                // Cast to target delegate type and invoke
                 SalaryComponentDelegate componentMethod = (SalaryComponentDelegate)singleDelegate;
                 double componentAmount = componentMethod(employeeBasicSalary);
 

@@ -2,13 +2,8 @@ using System;
 
 namespace Prog9
 {
-    // Question 9: What is the built-in Func delegate? Write a program using Func with methods
-    // that accept input values and return a result. Also demonstrate a multicast Func delegate
-    // and use GetInvocationList() to invoke each method separately and display all returned values.
-
     class Program
     {
-        // Target methods accepting double and returning double
         public static double CalculateSquare(double number)
         {
             return number * number;
@@ -41,7 +36,6 @@ namespace Prog9
             Console.WriteLine("--- DEMONSTRATION ---");
             double inputValue = 16.0;
 
-            // 1. Unicast Func Delegate
             Console.WriteLine($"[1] Unicast Func<double, double>:");
             Func<double, double> unicastFunc = CalculateSquare;
             double squareResult = unicastFunc(inputValue);
@@ -49,7 +43,6 @@ namespace Prog9
 
             Console.WriteLine();
 
-            // 2. Multicast Func Delegate & Why GetInvocationList() is needed
             Console.WriteLine("[2] Multicast Func<double, double>:");
             Func<double, double> multicastFunc = CalculateSquare;
             multicastFunc += CalculateCube;
@@ -59,7 +52,6 @@ namespace Prog9
             Console.WriteLine("  (Note: Direct invocation of a multicast Func returns ONLY the result of the LAST method in the invocation list!)");
             Console.WriteLine();
 
-            // 3. Using GetInvocationList() to capture ALL returned values
             Console.WriteLine("[3] Invoking Each Method in Multicast Func via GetInvocationList():");
             Delegate[] targets = multicastFunc.GetInvocationList();
 
